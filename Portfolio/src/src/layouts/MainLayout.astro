@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+
+interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photographolio</title>
+    <meta property="og:title" content="Photographolio" />
+    <meta
+      name="description"
+      content="A guided tour into my universe. Photography Portfolio."
+    />
+    <meta
+      property="og:description"
+      content="A guided tour into my universe. Photography Portfolio."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://raw.githubusercontent.com/MorganKryze/Portfolio/main/src/public/favicon.svg"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/MorganKryze/Portfolio/main/presentation.jpg"
+    />
+    <!-- TODO: replace blank with real URL -->
+    <meta property="og:url" content="" />
+  </head>
+  <body class="bg-image">
+    <Nav currentPage={currentPage} />
+    <slot />
+    <Footer />
+  </body>
+
+  <script>
+    const setFavicon = (theme: string) => {
+      const link: HTMLLinkElement | null =
+        document.querySelector('link[rel="icon"]');
+      if (link) {
+        if (theme === "dark") {
+          link.href = "/Portfolio/dark-favicon.svg";
+        } else {
+          link.href = "/Portfolio/light-favicon.svg";
+        }
+      }
+    };
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        setFavicon(e.matches ? "dark" : "light");
+      });
+
+    setFavicon(
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+    );
+  </script>
+</html>

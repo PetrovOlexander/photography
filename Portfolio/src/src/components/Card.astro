@@ -1,0 +1,31 @@
+---
+import "../styles/global.css";
+import "../animations/hide.astro";
+
+interface Props {
+  title: string;
+  image: string;
+  url: string;
+}
+
+const { title, image, url } = Astro.props;
+---
+
+<a
+  href={url}
+  class="relative group shadow-lg rounded-lg overflow-hidden flex-1"
+>
+  <img src={image} alt={title} class="w-full h-64 object-cover hover-effect" />
+  <div
+    class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black to-transparent opacity-50"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 p-6 flex items-center justify-between w-full"
+  >
+    <span class="text-white text-xl font-medium group-hover:underline"
+      >{title}</span
+    >
+    <img src="/Portfolio/icons/arrow-right.svg" alt="Icon" class="h-6 w-6" />
+  </div>
+</a>
