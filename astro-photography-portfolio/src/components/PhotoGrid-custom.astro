@@ -1,0 +1,60 @@
+---
+import '../styles/photogrid-custom.css';
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { Image } from 'astro:assets';
+import type { Image as ImageType } from '../data/galleryData';
+
+interface Props {
+	images: ImageType[];
+}
+
+const { images } = Astro.props;
+---
+
+ <section class="justified-gallery relative w-full mx-auto overflow-hidden" id="photoswipe">
+	{
+		images.map((image, index) => (
+			<a
+				href={image.src.src}
+				style={`--width: ${image.src.width}; --height: ${image.src.height};`}
+				data-fancybox="gallery"
+				target="_blank"
+			>
+				<Image
+					src={image.src}
+					format="webp"
+					// class="w-full h-full object-cover rounded-sm shadow-sm hover:shadow-lg transition-shadow"
+					alt={image.title}
+					height={400}
+					// loading={index < 20 ? "eager" : "lazy"}
+				/>
+			</a>
+		))
+	}
+</section>
+
+<script>
+	import '../scripts/photo-grid';
+	import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
+  Fancybox.bind("[data-fancybox]", {
+    theme: "auto",
+    mainStyle: {
+      "--f-button-width": "44px",
+      "--f-button-height": "44px",
+      "--f-button-border-radius": "50%",
+      "--f-toolbar-padding": "16px",
+    },
+    Carousel: {
+      Arrows: false,
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["close"],
+        },
+      },
+      transition: "slide",
+    },
+  });
+</script>
