@@ -10,7 +10,7 @@ images:
     [./couple-2-min-1.jpg, ./couple-2-min-1.jpg],
     [./rings-wood-min-1.jpg, ./seals-min-1.jpg, ./rings-wood-min-1.jpg],
     [./couple-9-1.jpg],
-    [./cake-min-1.jpg, ./dress-min-1.jpg],
+    [./dress-min-1.jpg],
   ]
 order: 1
 ---

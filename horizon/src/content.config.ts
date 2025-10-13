@@ -47,6 +47,20 @@ const testimonials = defineCollection({
 		}),
 });
 
+// featuredImages
+const featuredImages = defineCollection({
+	// type: "content",
+	loader: glob({
+		pattern: "**/[^_]*.{md,mdx}",
+		base: "./src/data/featuredImages",
+	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			images: z.array(image()),
+		}),
+});
+
 // other pages
 const otherPages = defineCollection({
 	// type: "content",
@@ -66,4 +80,5 @@ export const collections = {
 	portfolios,
 	testimonials,
 	otherPages,
+	featuredImages,
 };

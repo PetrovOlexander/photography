@@ -1,0 +1,19 @@
+---
+title: A set of featured images
+images:
+  [
+    ./f1.jpg,
+    ./f2.jpg,
+    ./f3.jpg,
+    ./f4.jpg,
+    ./f5.jpg,
+    ./f6.jpg,
+    ./f7.jpg,
+    ./f8.jpg,
+    ./f9.jpg,
+    ./f10.jpg,
+    ./f11.jpg,
+    ./f12.jpg,
+    ./f13.jpg,
+  ]
+---

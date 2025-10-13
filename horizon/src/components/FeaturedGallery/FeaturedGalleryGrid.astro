@@ -1,0 +1,65 @@
+---
+/**
+ * * Hero with background image
+ * You'll want a mobile image, and a desktop image for this.
+ */
+
+import { Image } from "astro:assets";
+import type { getEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+interface Props {
+	featuredImages: CollectionEntry<"featuredImages">[];
+}
+
+const { featuredImages } = Astro.props as Props;
+---
+
+<section class="justified-gallery" id="photoswipe">
+	{
+		featuredImages.map((entry) =>
+			entry.data.images.map((image, idx) => (
+				<a
+					style={`--width: ${image.width}; --height: ${image.height};`}
+					href={image.src}
+					data-fancybox="gallery"
+				>
+					<Image
+						class="rounded-sm"
+						src={image}
+						alt={entry.data.title}
+						loading={idx < 20 ? "eager" : "lazy"}
+					/>
+				</a>
+			)),
+		)
+	}
+</section>
+
+<script>
+	import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
+	Fancybox.bind("[data-fancybox]", {
+		theme: "auto",
+		Hash: false, //REALLY IMPORTANT OTHERWISE URL GETS CHANGED AND FANCYBOX STOPS WORKING DUE TO COMPONENT REFRESH
+		mainStyle: {
+			"--f-button-width": "44px",
+			"--f-button-height": "44px",
+			"--f-button-border-radius": "50%",
+			"--f-toolbar-padding": "16px",
+		},
+		Carousel: {
+			Arrows: false,
+			Toolbar: {
+				display: {
+					left: [],
+					middle: [],
+					right: ["close"],
+				},
+			},
+			transition: "slide",
+		},
+	});
+</script>

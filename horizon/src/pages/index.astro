@@ -3,6 +3,7 @@ import About from "@components/About/About.astro";
 import Button from "@components/Button/Button.astro";
 import Contact from "@components/Contact/Contact.astro";
 import FeatureNumbers from "@components/Feature/FeatureNumbers.astro";
+import FeaturedGallery from "@components/FeaturedGallery/FeaturedGallery.astro";
 // components
 import Hero from "@components/Hero/Hero.astro";
 import PortfolioThreeCards from "@components/Portfolio/PortfolioThreeCards.astro";
@@ -16,11 +17,12 @@ import { Image } from "astro:assets";
 ---
 
 <BaseLayout title={siteData.title} description={siteData.description} navStartStyle="white">
-	<Hero />
-	<FeatureNumbers />
+	<FeaturedGallery />
+	<!-- <Hero /> -->
+	<!-- <FeatureNumbers />
 	<PortfolioThreeCards />
 	<Testimonials />
 	<PricingThreeCards />
 	<About />
-	<Contact />
+	<Contact /> -->
 </BaseLayout>

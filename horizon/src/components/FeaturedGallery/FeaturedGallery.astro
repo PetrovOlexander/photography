@@ -1,0 +1,17 @@
+---
+/**
+ * * Hero with background image
+ * You'll want a mobile image, and a desktop image for this.
+ */
+
+import { Image } from "astro:assets";
+import "@/styles/custom-fancybox.css";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import FeaturedGalleryGrid from "./FeaturedGalleryGrid.astro";
+
+const featuredImages = await getCollection("featuredImages");
+---
+
+<section class="pt-24 md:pt-36">
+	<FeaturedGalleryGrid featuredImages={featuredImages} />
+</section>
