@@ -4,6 +4,7 @@
 	--min-height: clamp(200px, 20vw, 400px);
 
 	padding: var(--padding);
+	padding-top: 0;
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--space);

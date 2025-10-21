@@ -6,7 +6,6 @@ export interface SiteDataProps {
 	author: {
 		name: string;
 		email: string;
-		twitter: string; // used for twitter cards when sharing a blog post on twitter
 	};
 	defaultImage: {
 		src: string;
@@ -19,14 +18,12 @@ const siteData: SiteDataProps = {
 	name: "petrovisuals",
 	// Your website's title and description (meta fields)
 	title: "petrovisuals",
-	description:
-		"Website ",
+	description: "Website ",
 	useViewTransitions: true,
 	// Your information!
 	author: {
-		name: "Cosmic Themes",
-		email: "creator@cosmicthemes.com",
-		twitter: "Cosmic_Themes",
+		name: "Olexander Petrov",
+		email: "olexander@petrovisuals.be",
 	},
 
 	// default image for meta tags if the page doesn't have an image already

@@ -12,10 +12,9 @@ interface Props {
 	portfolio: CollectionEntry<"portfolios">;
 }
 
-import headerImage from "@images/portfolio-header-crop-min.jpg";
-
 const { portfolio } = Astro.props as Props;
-const { title, description, date, images, clients, location, heroImage } = portfolio.data;
+const { title, description, date, images, clients, location, heroImage, firstImage, bannerImage } =
+	portfolio.data;
 
 // find other portfolios to show later down the page
 const otherPortfolios = await getCollection("portfolios", (otherPortfolio) => {
@@ -34,7 +33,7 @@ const otherPortfolios = await getCollection("portfolios", (otherPortfolio) => {
 	<div class="relative h-[40svh] w-full overflow-hidden md:h-[60svh]">
 		<div class="absolute inset-0 z-10 bg-black/30"></div>
 		<Image
-			src={headerImage}
+			src={bannerImage}
 			alt="Portfolio header"
 			class="absolute inset-0 h-auto min-h-full w-full min-w-full object-cover md:hidden"
 			width={600}
@@ -42,7 +41,7 @@ const otherPortfolios = await getCollection("portfolios", (otherPortfolio) => {
 			loading="eager"
 		/>
 		<Image
-			src={headerImage}
+			src={bannerImage}
 			alt="Portfolio header"
 			class="absolute inset-0 hidden h-auto min-h-full w-full min-w-full object-cover md:block"
 			width={1920}
@@ -59,7 +58,7 @@ const otherPortfolios = await getCollection("portfolios", (otherPortfolio) => {
 		<!-- hero image -->
 		<div class="mt-6 h-auto max-h-[50vh] w-full overflow-hidden md:max-h-[80vh]">
 			<Image
-				src={heroImage}
+				src={firstImage}
 				alt={`cover for ${title}`}
 				width={1120}
 				quality="high"
@@ -109,11 +108,11 @@ const otherPortfolios = await getCollection("portfolios", (otherPortfolio) => {
 		</div>
 	</article>
 
-	<TestimonialQuote />
+	<!-- <TestimonialQuote /> -->
 
-	<section class="mx-auto mt-12 px-4 md:mt-16 md:max-w-5xl">
+	<!-- <section class="mx-auto mt-12 px-4 md:mt-16 md:max-w-5xl">
 		<h3 class="h2 text-center">More Portfolios</h3>
 		<PortfolioGrid portfolios={otherPortfolios} noTransitions />
 	</section>
-	<Contact class="mt-12" />
+	<Contact class="mt-12" /> -->
 </BaseLayout>

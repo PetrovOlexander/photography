@@ -14,6 +14,8 @@ const portfolios = defineCollection({
 			title: z.string(),
 			description: z.string(),
 			heroImage: image(),
+			firstImage: image(),
+			bannerImage: image(),
 			clients: z.array(z.string()),
 			location: z.string(),
 			images: z.array(
