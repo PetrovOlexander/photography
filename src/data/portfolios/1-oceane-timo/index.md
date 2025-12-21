@@ -21,4 +21,4 @@ images:
 order: 1
 ---
 
-Did I take a picture of you during the wedding? Head over to my <a style="color: oklch(64.12% 0.0623 60.4);" target="_blank" href="https://www.facebook.com/share/16n7DpXWke/?mibextid=wwXIfr">facebook page</a>!
+Did I take a picture of you during the wedding? Head over to my <a style="color: oklch(64.12% 0.0623 60.4);" target="_blank" href="https://www.facebook.com/petrovisualsbe">facebook page</a>!

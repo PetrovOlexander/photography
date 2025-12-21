@@ -4,10 +4,10 @@
  * You'll want a mobile image, and a desktop image for this.
  */
 
-import { Image } from "astro:assets";
+ import { Image, Picture } from "astro:assets";
 import type { getEntry } from "astro:content";
 import { getCollection, render, type CollectionEntry } from "astro:content";
-import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 interface Props {
@@ -27,10 +27,12 @@ const { featuredImages } = Astro.props as Props;
 					data-fancybox="gallery"
 				>
 					<Image
-						class="rounded-sm"
+
+						class="rounded-smss"
 						src={image}
 						alt={entry.data.title}
-						loading={idx < 20 ? "eager" : "lazy"}
+						height={600}
+						loading={"lazy"}
 					/>
 				</a>
 			)),
