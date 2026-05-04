@@ -27,11 +27,11 @@ const { featuredImages } = Astro.props as Props;
 					data-fancybox="gallery"
 				>
 					<Image
-
 						class="rounded-smss"
 						src={image}
 						alt={entry.data.title}
 						height={600}
+						densities={[1, 2, 3]}
 						loading={"lazy"}
 					/>
 				</a>
@@ -43,7 +43,7 @@ const { featuredImages } = Astro.props as Props;
 <script>
 	import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 
-	Fancybox.bind("[data-fancybox]", {
+	const options = {
 		theme: "auto",
 		Hash: false, //REALLY IMPORTANT OTHERWISE URL GETS CHANGED AND FANCYBOX STOPS WORKING DUE TO COMPONENT REFRESH
 		mainStyle: {
@@ -63,5 +63,12 @@ const { featuredImages } = Astro.props as Props;
 			},
 			transition: "slide",
 		},
+	};
+
+	// astro:page-load fires after every view transition (and on initial load),
+	// ensuring FancyBox is rebound whenever the homepage DOM is present.
+	document.addEventListener("astro:page-load", () => {
+		Fancybox.destroy();
+		Fancybox.bind("[data-fancybox]", options);
 	});
 </script>
