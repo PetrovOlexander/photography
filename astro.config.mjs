@@ -9,8 +9,29 @@ import icon from "astro-icon"; // https://www.astroicon.dev/guides/upgrade/v1/
 // https://astro.build/config
 export default defineConfig({
 	site: "https://petrovisuals.be",
+	// Old flat portfolio URLs -> new category-nested URLs (folders were regrouped).
+	redirects: {
+		"/portfolio/1-oceane-timo": "/portfolio/couples/oceane-timo",
+		"/portfolio/2-hcc": "/portfolio/sport/hcc",
+		"/portfolio/3-fitcontrol": "/portfolio/sport/fitcontrol",
+		"/portfolio/4-laliquefebe": "/portfolio/aw/lalique",
+		"/portfolio/5-motorsport": "/portfolio/sport/motorsport",
+		"/portfolio/5-laura": "/portfolio/aw/laura",
+		"/portfolio/6-hanane": "/portfolio/aw/hanane",
+		"/portfolio/7-solene": "/portfolio/aw/solene",
+		"/portfolio/8-paris": "/portfolio/aw/paris",
+		"/portfolio/9-motorsport": "/portfolio/sport/motorsport",
+	},
 	devToolbar: {
 		enabled: false,
+	},
+	image: {
+		// Custom sharp service that bakes the "petrovisuals" watermark into portfolio
+		// & featured photos at build time. Source images in src/data/** stay untouched.
+		// See src/imageService/watermark.ts and scripts/generate-watermark.mjs.
+		service: {
+			entrypoint: "./src/imageService/watermark.ts",
+		},
 	},
 	integrations: [
 		// example auto import component into blog post mdx files

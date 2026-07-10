@@ -17,6 +17,8 @@ const portfolios = defineCollection({
 			firstImage: image(),
 			bannerImage: image(),
 			clients: z.array(z.string()),
+			// Free-form tags for filtering on the /portfolio overview (independent of folder).
+			keywords: z.array(z.string()).default([]),
 			location: z.string(),
 			images: z.array(
 				z.array(image()).refine((arr) => [1, 2, 3].includes(arr.length), {

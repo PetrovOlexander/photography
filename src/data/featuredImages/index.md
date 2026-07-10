@@ -2,14 +2,22 @@
 title: A set of featured images
 images:
   [
-    portfolio3.webp,
-    P1084442_DxO_2.webp,
+    portfolio3-featured.webp,
+    P1084442_DxO_2-featured.webp,
     ./f22.webp,
-    ./P1084241_DxO_1.webp,
+    ./P1084241_DxO_1-featured.webp,
     ./f1.webp,
     ./f2.webp,
     ./f3.webp,
     ./f4.webp,
+    ./P1340902-2.webp,
+    ./P1362586.webp,
+    ./P1373718.webp,
+    ./P1363354.webp,
+    ./P1351712.webp,
+    ./P1374081.webp,
+    ./alpine_stack.webp,
+    ./P1351977.webp,
     ./f10.webp,
     ./f6.webp,
     ./f12.webp,
@@ -17,14 +25,11 @@ images:
     ./f16.webp,
     ./f19.webp,
     P1071938_DxO_2.webp,
-    P1083636_DxO_2.webp,
-    P1071907_DxO_3.webp,
-    ./f7.webp,
+    P1083636_DxO_2-featured.webp,
+    P1071907_DxO_3-featured.webp,
     ./f5.webp,
     ./f8.webp,
     ./f17.webp,
-    ./f18.webp,
-    P1072768_DxO_2.webp,
-    P1072596_DxO_2.webp
+    ./f18.webp
   ]
 ---

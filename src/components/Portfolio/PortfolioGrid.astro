@@ -1,6 +1,6 @@
 ---
 import PortfolioCard from "@components/PortfolioCard/PortfolioCard.astro";
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 
 interface Props {
 	portfolios: CollectionEntry<"portfolios">[];
@@ -8,8 +8,73 @@ interface Props {
 }
 
 const { portfolios, noTransitions = false } = Astro.props as Props;
+
+// Union of every keyword across the passed portfolios -> one chip each ("All" is added in markup).
+const keywords = [...new Set(portfolios.flatMap((p) => p.data.keywords))].sort((a, b) =>
+	a.localeCompare(b),
+);
+
+const chipBase =
+	"filter-chip cursor-pointer border border-primary-300 px-4 py-2 text-sm uppercase tracking-widest text-primary-700 transition-colors hover:border-primary-500";
+const chipActive = "bg-primary-500 text-white border-primary-500";
 ---
 
-<div class="grid gap-x-4 gap-y-10 pt-8 md:grid-cols-3 md:pt-12">
-	{portfolios.map((portfolio) => <PortfolioCard portfolio={portfolio} direction="vertical" />)}
+<div data-portfolio-filter>
+	{
+		keywords.length > 0 && (
+			<div class="mb-2 flex flex-wrap justify-center gap-2 md:mb-4 md:gap-3">
+				<button type="button" class:list={[chipBase, chipActive]} data-filter="" aria-pressed="true">
+					All
+				</button>
+				{keywords.map((kw) => (
+					<button type="button" class={chipBase} data-filter={kw} aria-pressed="false">
+						{kw}
+					</button>
+				))}
+			</div>
+		)
+	}
+
+	<div class="grid gap-x-4 gap-y-10 pt-8 md:grid-cols-3 md:pt-12">
+		{
+			portfolios.map((portfolio) => (
+				<div class="portfolio-item" data-keywords={portfolio.data.keywords.join("|")}>
+					<PortfolioCard portfolio={portfolio} direction="vertical" noTransitions={noTransitions} />
+				</div>
+			))
+		}
+	</div>
 </div>
+
+<script>
+	// Single-select keyword filter. Bound on astro:page-load so it also works after
+	// View Transitions (ClientRouter) swaps — same idiom as FeaturedGalleryGrid.
+	const ACTIVE = ["bg-primary-500", "text-white", "border-primary-500"];
+
+	function initPortfolioFilter() {
+		document.querySelectorAll<HTMLElement>("[data-portfolio-filter]").forEach((root) => {
+			const chips = Array.from(root.querySelectorAll<HTMLButtonElement>(".filter-chip"));
+			const items = Array.from(root.querySelectorAll<HTMLElement>(".portfolio-item"));
+
+			const apply = (value: string) => {
+				for (const chip of chips) {
+					const active = (chip.dataset.filter ?? "") === value;
+					chip.setAttribute("aria-pressed", active ? "true" : "false");
+					for (const cl of ACTIVE) chip.classList.toggle(cl, active);
+				}
+				for (const item of items) {
+					const kws = (item.dataset.keywords ?? "").split("|").filter(Boolean);
+					const show = value === "" || kws.includes(value);
+					item.classList.toggle("hidden", !show);
+				}
+			};
+
+			for (const chip of chips) {
+				chip.addEventListener("click", () => apply(chip.dataset.filter ?? ""));
+			}
+			apply(""); // default to "All"
+		});
+	}
+
+	document.addEventListener("astro:page-load", initPortfolioFilter);
+</script>

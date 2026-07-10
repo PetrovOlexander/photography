@@ -4,9 +4,8 @@
  * You'll want a mobile image, and a desktop image for this.
  */
 
- import { Image, Picture } from "astro:assets";
-import type { getEntry } from "astro:content";
-import { getCollection, render, type CollectionEntry } from "astro:content";
+ import { getImage, Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -15,28 +14,52 @@ interface Props {
 }
 
 const { featuredImages } = Astro.props as Props;
+
+// Candidate render widths; never request larger than the source image.
+const widthsFor = (srcWidth: number) => {
+	const widths = [400, 800, 1200, 1600, 2000, 2400].filter((w) => w <= srcWidth);
+	return widths.length ? widths : [srcWidth];
+};
+
+// The fancybox lightbox must NOT link to `image.src` (that serves the untouched
+// full-resolution original). Instead generate a watermarked, size-capped derivative
+// through the image service so the "open" view is protected too.
+const LIGHTBOX_MAX = 2000;
+const items = await Promise.all(
+	featuredImages.flatMap((entry) =>
+		entry.data.images.map(async (image) => ({
+			title: entry.data.title,
+			image,
+			large: await getImage({
+				src: image,
+				width: Math.min(image.width, LIGHTBOX_MAX),
+				format: "webp",
+				quality: "high",
+			}),
+		})),
+	),
+);
 ---
 
 <section class="justified-gallery" id="photoswipe">
 	{
-		featuredImages.map((entry) =>
-			entry.data.images.map((image, idx) => (
-				<a
-					style={`--width: ${image.width}; --height: ${image.height};`}
-					href={image.src}
-					data-fancybox="gallery"
-				>
-					<Image
-						class="rounded-smss"
-						src={image}
-						alt={entry.data.title}
-						height={600}
-						densities={[1, 2, 3]}
-						loading={"lazy"}
-					/>
-				</a>
-			)),
-		)
+		items.map(({ title, image, large }) => (
+			<a
+				style={`--width: ${image.width}; --height: ${image.height};`}
+				href={large.src}
+				data-fancybox="gallery"
+			>
+				<Image
+					class="rounded-smss"
+					src={image}
+					alt={title}
+					widths={widthsFor(image.width)}
+					sizes="(max-width: 768px) 100vw, 70vw"
+					loading={"lazy"}
+					draggable={false}
+				/>
+			</a>
+		))
 	}
 </section>
 
