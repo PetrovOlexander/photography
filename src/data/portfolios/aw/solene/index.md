@@ -1,19 +1,19 @@
 ---
-# PLACEHOLDER: every image is P1156031.webp until the real shoot photos are added.
+# PLACEHOLDER: every image is P1234250.webp until the real shoot photos are added.
 title: Solène
 description: Campaign photoshoot for Aesthetic Wolf with Solène
 date: "2026"
 location: "TBD"
 clients: [Aesthetic Wolf]
 keywords: [AW]
-heroImage: ./P1156031.webp
-firstImage: ./P1156031.webp
-bannerImage: ./P1156031.webp
+heroImage: ./P1234250.webp
+firstImage: ./P1234250.webp
+bannerImage: ./P1234250.webp
 images:
     [
-        [P1156031.webp],
-        [P1156031.webp, P1156031.webp],
-        [P1156031.webp]
+        [P1234250.webp],
+        [P1234250.webp, P1234250.webp],
+        [P1234250.webp]
     ]
 order: 7
 ---

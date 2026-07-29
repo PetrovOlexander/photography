@@ -1,19 +1,23 @@
 ---
-# PLACEHOLDER: every image is P1156031.webp until the real shoot photos are added.
 title: Laura
 description: Campaign photoshoot for Aesthetic Wolf with Laura
 date: "2026"
-location: "TBD"
+location: "Studio"
 clients: [Aesthetic Wolf]
 keywords: [AW]
-heroImage: ./P1156031.webp
-firstImage: ./P1156031.webp
-bannerImage: ./P1156031.webp
+heroImage: ./aestheticwolf_product-20260305-1201184.webp
+firstImage: ./aestheticwolf_product-20260305-1190788.webp
+bannerImage: ./aestheticwolf_product-20260305-1201355.webp
 images:
     [
-        [P1156031.webp],
-        [P1156031.webp, P1156031.webp],
-        [P1156031.webp]
+        [aestheticwolf_product-20260305-1201413.webp, aestheticwolf_product-20260305-1201556.webp],
+        [aestheticwolf_product-20260305-1201588.webp],
+        [aestheticwolf_product-20260305-1190093.webp, aestheticwolf_product-20260305-1190056.webp, aestheticwolf_product-20260305-1190229.webp],
+        [aestheticwolf_product-20260305-1190273.webp],
+        [aestheticwolf_product-20260305-1190816.webp, aestheticwolf_product-20260305-1190695.webp],
+        [aestheticwolf_product-20260305-1190565.webp, aestheticwolf_product-20260305-1190911.webp, aestheticwolf_product-20260305-1190616.webp],
+        [aestheticwolf_product-20260305-1201278.webp, aestheticwolf_product-20260305-1201322.webp],
+        [aestheticwolf_product-20260305-1201488.webp]
     ]
 order: 5
 ---
